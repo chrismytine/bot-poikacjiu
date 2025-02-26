@@ -51,7 +51,7 @@ async def attack(ctx):
         await ctx.send("Tetapkan pemain yang ingin Anda serang dengan menyebutnya.")
 
 @bot.command()
-async def info(ctx):
+async def ianfo(ctx):
     author = ctx.author.name
     if author in Pokemon.pokemons:
         pokemon = Pokemon.pokemons[author]
@@ -59,4 +59,13 @@ async def info(ctx):
     else:
         await ctx.send("Anda tidak memiliki Pokémon!")
 
+@bot.command()
+async def info(ctx):
+    if ctx.author.name in Pokemon.pokemons:
+        pok = Pokemon.pokemons[ctx.author.name]
+        info_text = await pok.info() 
+        await ctx.send(f" Informasi Pokémon kamu:\n{info_text}")
+    else:
+        await ctx.send("Kamu belum memiliki Pokémon! Tangkap dulu dengan perintah `!go`.")
+        
 bot.run(token)
