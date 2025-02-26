@@ -1,43 +1,99 @@
-import discord
-from discord.ext import commands
-from config import token
-from logic import Pokemon
+import aiohttp
+import random
+from random import randint
+import asyncio  # Add asyncio to handle asynchronous code
 
-# Setting up intents for the bot
-intents = discord.Intents.default()  # Getting the default settings
-intents.messages = True              # Allowing the bot to process messages
-intents.message_content = True       # Allowing the bot to read message content
-intents.guilds = True                # Allowing the bot to work with servers (guilds)
+class Pokemon:
+    pokemons = {}
 
-# Creating a bot with a defined command prefix and activated intents
-bot = commands.Bot(command_prefix='!', intents=intents)
+    def __init__(self, pokemon_trainer):
+        self.pokemon_trainer = pokemon_trainer
+        self.pokemon_number = random.randint(1, 1000)
+        self.name = None
+        self.img = None
+        self.experience = 0
+        self.height = None
+        self.power = random.randint(30, 60)
+        self.hp = random.randint(200, 400)
+        if pokemon_trainer not in self.pokemons:
+            self.pokemons[pokemon_trainer] = self
 
-# An event that is triggered when the bot is ready to run
-@bot.event
-async def on_ready():
-    print(f'Logged in as {bot.user.name}')  # Outputs the bot's name to the console
+    async def get_name(self):
+        url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}'
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data['forms'][0]['name']
+                else:
+                    return "Pikachu"
+    async def gain_experience(self, xp_amount):
+        self.experience += xp_amount
+        level_up_exp = 100 * self.level 
+        while self.experience >= level_up_exp:
+            self.level += 1
+            self.experience -= level_up_exp
+            level_up_exp = 100 * self.level  
+            print(f"{self.name} has leveled up! Now at level {self.level}.")
 
-# The '!go' command
-@bot.command()
-async def go(ctx):
-    author = ctx.author.name  # Getting the name of the message's author
-    # Check whether the user already has a Pokémon. If not, then...
-    if author not in Pokemon.pokemons.keys():
-        pokemon = Pokemon(author)  # Creating a new Pokémon
-        await ctx.send(await pokemon.info())  # Sending information about the Pokémon
-        image_url = await pokemon.show_img()  # Getting the URL of the Pokémon image
-        if image_url:
-            embed = discord.Embed()  # Creating an embed message
-            embed.set_image(url=image_url)  # Setting up the Pokémon's image
-            await ctx.send(embed=embed)  # Sending an embedded message with an image
+    async def info(self):
+        if not self.name:
+            self.name = await self.get_name()
+        return f"""Nama Pokemon kamu: {self.name}
+                Kekuatan Pokemon: {self.power}
+                HP Pokemon: {self.hp}"""
+
+    async def show_img(self):
+        url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}'
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    img_url = data['sprites']['front_default']
+                    return img_url 
+                else:
+                    return None
+
+    async def attack(self, enemy):
+        if isinstance(enemy, Wizard):
+            chance = randint(1, 5)
+            if chance == 1:
+                return "Pokemon Penyihir menggunakan perisai dalam pertarungan"
+        if enemy.hp > self.power:
+            enemy.hp -= self.power
+            return f"Pertarungan @{self.pokemon_trainer} melawan @{enemy.pokemon_trainer}\nHP @{enemy.pokemon_trainer} sekarang {enemy.hp}"
         else:
-            await ctx.send("Failed to upload an image of the pokémon.")  
-        height = await pokemon.get_height() 
-        if height:
-            await ctx.send(f"The height of your Pokémon is {height} decimeters.") 
-        else:
-            await ctx.send("Failed to fetch the height of the Pokémon.")
-    else:
-        await ctx.send("You've already created your own Pokémon.")  # A message that is printed whether a Pokémon has already been created
-# Running the bot
-bot.run(token)
+            enemy.hp = 0
+            return f"@{self.pokemon_trainer} menang melawan @{enemy.pokemon_trainer}!"
+
+
+class Wizard(Pokemon):
+    # Kelas ini dapat menambahkan method dan properti khusus untuk penyihir
+    pass
+
+
+class Fighter(Pokemon):
+    async def attack(self, enemy):
+        super_power = randint(5, 15)
+        self.power += super_power
+        result = await super().attack(enemy)
+        self.power -= super_power
+        return result + f"\nPetarung menggunakan serangan super dengan kekuatan:{super_power}"
+
+
+# async def main():
+#     wizard = Wizard("username1")
+#     fighter = Fighter("username2")
+
+#     print(await wizard.info())  # Await here to get the result of the coroutine
+#     print("#" * 10)
+#     print(await fighter.info())  # Await here as well
+#     print("#" * 10)
+#     # You can also await attacks if needed
+#     print(await wizard.attack(fighter))
+#     print(await fighter.attack(wizard))
+
+
+# # Run the main function inside an event loop
+# asyncio.run(main())
+
