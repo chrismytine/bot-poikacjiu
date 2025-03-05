@@ -5,4 +5,5 @@
 
 > [!NOTE]
 > Your pokemon may change if the code gets restarted
-![Screenshot of a pokemon and others that i don't know.](https://gamebrott.com/wp-content/uploads/2023/03/Duo-Protagonis-Anime-Pokemon-Penerus-Ash-Ketchum-Diperkenalkan-Lewat-Trailer-Baru-750x375.jpg))
+> 
+![Screenshot of a pokemon and others that i don't know.](https://gamebrott.com/wp-content/uploads/2023/03/Duo-Protagonis-Anime-Pokemon-Penerus-Ash-Ketchum-Diperkenalkan-Lewat-Trailer-Baru-750x375.jpg)
