@@ -13,7 +13,10 @@
 ### Example
 - At first you need to invite the bot, let's say you have. This bot uses the prefix of "!". You can start by typing "!go" and send it.
 ![Screenshot of a pokemon and others that i don't know.](https://github.com/chrismytine/bot-poikacjiu/blob/45f9ef3826c68f8ced96b22772f98de98a7a8b12/Screenshot%20(220).png)
-- You can send the command "!info
+- Let's say you forgot what you're pokemon is, you can send the command "!info"
 > If you want to know more go ahead and try to use the bot, to know the commands available send "!help"
+![a](https://github.com/chrismytine/bot-poikacjiu/blob/bf2ffb940c0a16c7cc2d63823e4d58ec7a854afc/Screenshot%20(221).png)
+
+> Try out other commands by using the command "!help" to know more!
 
 ![Screenshot of a pokemon and others that i don't know.](https://gamebrott.com/wp-content/uploads/2023/03/Duo-Protagonis-Anime-Pokemon-Penerus-Ash-Ketchum-Diperkenalkan-Lewat-Trailer-Baru-750x375.jpg)
