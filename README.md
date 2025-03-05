@@ -18,5 +18,7 @@
 ![Screenshot of a command.](https://github.com/chrismytine/bot-poikacjiu/blob/abe3595c9dbdefe8bb2bd62c8bb6eaa1aea89315/Screenshot%20(222).png)
 
 > Try out other commands by using the command "!help" to know more!
+![Screenshot of a command.](https://github.com/chrismytine/bot-poikacjiu/blob/f8f42ae79084bd240f0c00600cf0bdc5a1754928/Screenshot%20(224).png)
 
-![Screenshot of a pokemon and others that i don't know.](https://gamebrott.com/wp-content/uploads/2023/03/Duo-Protagonis-Anime-Pokemon-Penerus-Ash-Ketchum-Diperkenalkan-Lewat-Trailer-Baru-750x375.jpg)
+## Enjoy the bot
+> ![Screenshot of a pokemon and others that i don't know.](https://gamebrott.com/wp-content/uploads/2023/03/Duo-Protagonis-Anime-Pokemon-Penerus-Ash-Ketchum-Diperkenalkan-Lewat-Trailer-Baru-750x375.jpg)
