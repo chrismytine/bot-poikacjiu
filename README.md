@@ -4,4 +4,5 @@
 - You can also use the pokemon you have got to fight other people's pokemon with a special power.
 
 # Table of contents
-- [Installation]
+- [Installation](#installation)
+- [Logic}(#logic.py)
