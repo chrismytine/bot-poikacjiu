@@ -22,5 +22,3 @@
 
 ## Enjoy the bot
 > ![Screenshot of a pokemon and others that i don't know.](https://gamebrott.com/wp-content/uploads/2023/03/Duo-Protagonis-Anime-Pokemon-Penerus-Ash-Ketchum-Diperkenalkan-Lewat-Trailer-Baru-750x375.jpg)
-
-![kokok](https://github.com/chrismytine/bot-poikacjiu/blob/a5cb38271a1ced2ff9a1fc2fb36d8810eb4891b1/Screenshot%20(74).png)
