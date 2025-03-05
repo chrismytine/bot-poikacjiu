@@ -19,6 +19,7 @@ async def go(ctx):
     author = ctx.author.name
     if author not in Pokemon.pokemons:
         chance = random.randint(1, 3)
+        print(chance)
         if chance == 1:
             pokemon = Pokemon(author)
         elif chance == 2:
@@ -32,9 +33,9 @@ async def go(ctx):
             embed.set_image(url=image_url)
             await ctx.send(embed=embed)
         else:
-            await ctx.send("Gagal memuat gambar Pokémon.")
+            await ctx.send("Tidak dapat memuat gambar pokemon.")
     else:
-        await ctx.send("Anda sudah memiliki Pokémon!")
+        await ctx.send("Anda sudah memiliki pokemon.")
 
 @bot.command()
 async def attack(ctx):
@@ -46,26 +47,29 @@ async def attack(ctx):
             result = await attacker.attack(enemy)
             await ctx.send(result)
         else:
-            await ctx.send("Kedua pemain harus memiliki Pokémon untuk pertarungan!")
+            await ctx.send("Kedua pihak harus memiliki pokemon untuk pertempuran!")
     else:
-        await ctx.send("Tetapkan pemain yang ingin Anda serang dengan menyebutnya.")
+        await ctx.send("Tentukan pengguna yang ingin Anda menyerang, menyebutnya.")
 
 @bot.command()
-async def ianfo(ctx):
+async def info(ctx):
     author = ctx.author.name
     if author in Pokemon.pokemons:
         pokemon = Pokemon.pokemons[author]
         await ctx.send(await pokemon.info())
     else:
-        await ctx.send("Anda tidak memiliki Pokémon!")
+        await ctx.send("Anda tidak memiliki pokemon!")
 
 @bot.command()
-async def info(ctx):
-    if ctx.author.name in Pokemon.pokemons:
-        pok = Pokemon.pokemons[ctx.author.name]
-        info_text = await pok.info() 
-        await ctx.send(f" Informasi Pokémon kamu:\n{info_text}")
+async def feed(ctx):
+    author = ctx.author.name
+    if author in Pokemon.pokemons:
+        pokemon = Pokemon.pokemons[author]
+        response = await pokemon.feed()
+        await ctx.send(response)
     else:
-        await ctx.send("Kamu belum memiliki Pokémon! Tangkap dulu dengan perintah `!go`.")
-        
+        await ctx.send("Anda tidak memiliki pokemon!")
+
+
 bot.run(token)
+
